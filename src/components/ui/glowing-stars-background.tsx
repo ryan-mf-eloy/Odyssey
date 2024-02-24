@@ -5,16 +5,54 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils/utils";
 
 export default function GlowingStarsBackground({ className }: { className?: string }) {
-  const stars = 1000;
-  const columns = 50;
+  const currentViewWidth = window.innerWidth;
+  let currentViewPortSize = '2xl';
+  
+  if (currentViewWidth <= 1600) {
+    currentViewPortSize = 'xl'
+  }
+  if (currentViewWidth <= 1024) {
+    currentViewPortSize = 'lg'
+  }
+  if (currentViewWidth <= 640) {
+    currentViewPortSize = 'md'
+  }
+  if (currentViewWidth <= 440) {
+    currentViewPortSize = 'sm'
+  }
+
+  const stars: any = {
+    'sm': {
+      qtd: 100,
+      columns: 10
+    },
+    'md': {
+      qtd: 500,
+      columns: 20
+    },
+    'lg': {
+      qtd: 800,
+      columns: 30
+    },
+    'xl': {
+      qtd: 1000,
+      columns: 50
+    },
+    '2xl': {
+      qtd: 1500,
+      columns: 60
+    },
+  }
+
+  const { qtd, columns } = stars[currentViewPortSize];
 
   const [glowingStars, setGlowingStars] = useState<number[]>([]);
   const highlightedStars = useRef<number[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      highlightedStars.current = Array.from({ length: 50 }, () =>
-        Math.floor(Math.random() * stars)
+      highlightedStars.current = Array.from({ length: 100 }, () =>
+        Math.floor(Math.random() * qtd)
       );
       setGlowingStars([...highlightedStars.current]);
     }, 3000);
@@ -31,15 +69,12 @@ export default function GlowingStarsBackground({ className }: { className?: stri
         gap: `1px`,
       }}
     >
-      {[...Array(stars)].map((_, starIdx) => {
+      {[...Array(qtd)].map((_, starIdx) => {
         const isGlowing = glowingStars.includes(starIdx);
         const delay = (starIdx % 10) * 0.1;
 
         return (
-          <div
-            key={`matrix-col-${starIdx}}`}
-            className="relative flex items-center justify-center"
-          >
+          <div key={`matrix-col-${starIdx}}`} >
             <Star
               isGlowing={isGlowing}
               delay={delay}
@@ -64,14 +99,14 @@ function Star({ isGlowing, delay }: { isGlowing: boolean; delay: number }) {
       }}
       animate={{
         scale: isGlowing ? [1, 1.2, 2.5, 2.2, 1.5] : 1,
-        background: isGlowing ? "#f0f0f0" : "#444",
+        background: isGlowing ? "#888" : "#444",
       }}
       transition={{
         duration: 2,
         ease: "easeInOut",
         delay: delay,
       }}
-      className={cn("bg-[#444] h-[1px] w-[1px] rounded-full relative -z-20")}
+      className={cn("bg-[#444] h-[1.5px] w-[1.5px] rounded-full relative -z-20")}
     ></motion.div>
   );
 };

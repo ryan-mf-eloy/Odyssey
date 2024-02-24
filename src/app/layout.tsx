@@ -16,7 +16,7 @@ export const fontMono = FontMono({
 })
 
 export const metadata: Metadata = {
-  title: "Interstellar",
+  title: "Odyssey",
   description: "",
 };
 

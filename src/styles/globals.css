@@ -56,6 +56,35 @@
     --ocean: 175 84% 53%;
   }
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: #111111
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--ring));
+}
+
+.no-visible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
  
 @layer base {
   * {
