@@ -48,7 +48,7 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="pt-16 shadow-vignette min-h-screen relative flex flex-col items-center justify-center">
-        {/* <GlowingStarsBackground className="min-h-screen absolute top-0 bottom-0 right-0 left-0" /> */}
+        <GlowingStarsBackground className="min-h-screen absolute top-0 bottom-0 right-0 left-0" />
 
         <div className="pt-10 flex flex-col items-center justify-center max-w-4xl text-center">
           <h1 className="text-8xl font-extrabold mb-6">Odyssey</h1>
@@ -60,9 +60,10 @@ export default function Home() {
           contentClassName="bg-zinc-600 bg-opacity-5 backdrop-blur-[8px] mt-8"
           containerClassName="bg-zinc-950"
         />
+
+        <Pricing />
       </main>
 
-      <Pricing />
       <Footer />
     </>
   );
