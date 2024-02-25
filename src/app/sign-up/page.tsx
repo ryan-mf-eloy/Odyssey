@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form"
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
+import AppResourcesPreview from "@/components/ui/app-resources-preview"
 
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
@@ -25,6 +26,9 @@ import githubLogo from '@/public/github-logo.svg'
 import googleLogo from '@/public/google-logo.svg'
  
 const formSchema = z.object({
+  username: z.string().min(2, {
+    message: "Incorrect username",
+  }),
   email: z.string().email({
     message: "Incorrect e-mail",
   }),
@@ -33,7 +37,7 @@ const formSchema = z.object({
   })
 })
 
-export default function SignIn() {
+export default function SignUp() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
@@ -49,18 +53,40 @@ export default function SignIn() {
     <main>
       <section className="flex flex-row items-center justify-center">
         <div className="max-w-[60vw] border-r w-full min-h-screen max-h-screen flex items-center justify-center">
-         [Content]
+          <div className="z-20">
+            <AppResourcesPreview />
+          </div>
         </div>
 
-        <div className="max-w-[40vw] w-full min-h-screen max-h-screen flex flex-col px-32 items-center justify-center bg-zinc-950">
+        <div className="max-w-[40vw] w-full min-h-screen max-h-screen flex flex-col px-32 items-center justify-center bg-zinc-950 relative">
           <div className="pb-5 w-full">
             <h3 className="text-2xl pb-10 font-bold flex items-center gap-2">
-              Sign In
+              Sign Up
               <ArrowRightIcon width={25} />
             </h3>
 
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>E-mail</FormLabel>
+
+                      <FormControl>
+                        <Input placeholder="username" {...field} />
+                      </FormControl>
+
+                      <FormDescription>
+                        This is your e-mail.
+                      </FormDescription>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 <FormField
                   control={form.control}
                   name="email"
@@ -101,25 +127,12 @@ export default function SignIn() {
                   )}
                 />
 
-                <Button type="submit">Sign In</Button>
-
-                <div className="flex flex-row gap-5">
-                  <Link href={"/sign-up"}>
-                    <small className="text-zinc-400 hover:text-white transition-[2000ms]">
-                      Or sign up here.
-                    </small>
-                  </Link>
-                  <Link href={"/sign-up"}>
-                    <small className="text-zinc-400 hover:text-white transition-[2000ms]">
-                      Forgot password?
-                    </small>
-                  </Link>
-                </div>
+                <Button type="submit">Sign Up</Button>
               </form>
             </Form>
           </div>
           
-          <div className="flex flex-col gap-5 pt-5 w-full">
+          <div className="flex flex-col gap-5 w-full">
             <Button variant={"outline"}>
               <Image src={githubLogo.src} alt="Github" width={20} height={20} className="mr-2" />
               Github

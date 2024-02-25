@@ -44,15 +44,14 @@ export default function Pricing() {
   }
 
   return (
-    <section className="p-10 my-24 items-center border-t justify-center flex flex-col">
+    <section className="p-10 items-center border-t justify-center flex flex-col">
       
       <h2 className="pb-5 text-4xl font-bold">Choose your plan</h2>
       <div className="flex flex-row items-center justify-items-center gap-2 pb-8">
         <span className={often === 'M' ? 'text-primary' : 'text-zinc-500'}>Monthly</span>
         <Switch onClick={handleOften} checked={often === 'A'} />
-        <span className={`flex flex-col items-center${often === 'A' ? 'text-primary' : 'text-zinc-500'}`}>
+        <span className={often === 'A' ? 'text-primary' : 'text-zinc-500'}>
           Annually
-          <small className="text-zinc-500">40% Discount</small>
         </span>
       </div>
 
@@ -63,7 +62,7 @@ export default function Pricing() {
               <SparklesIcon width={25} />
               Hobby
             </h3>
-            <h4 className="text-5xl font-medium text-green mt-2 flex pb-5 gap-2 items-center">
+            <h4 className="text-5xl font-medium mt-2 flex pb-5 gap-2 items-center">
               <span>{plans['HOBBY'][often].value}</span>
               <span className="flex flex-col gap-1">
                 <small className="text-sm text-zinc-500">No credit card </small>
@@ -72,26 +71,26 @@ export default function Pricing() {
             </h4>
 
             <div className="flex flex-col gap-2">
-              <Button className="bg-green hover:bg-green-shadow">Continue for free</Button>
+              <Button>Continue for free</Button>
               <Button variant={'ghost'}>Contact our support</Button>
             </div>
           </div>
 
           <ul className="flex flex-col gap-2 text-zinc-300">
             <small className="text-zinc-500 py-3">Unlimited access</small>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-green" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited projects
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-green" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited users
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-green" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited storage
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-green" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited bandwidth
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-green" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited API calls
             </li>
           </ul>
@@ -99,12 +98,18 @@ export default function Pricing() {
 
         <div className="flex flex-col overflow-hidden min-h-96 relative p-10 min-w-96 bg-black border border-primary rounded-md">
           <div className="border-b pb-5 pt-4 items-center justify-center">
-            <h6 className="bg-primary py-2 rounded-br-sm rounded-bl-sm absolute px-5 top-0 left-20 right-20 text-zinc-950 text-center font-semibold">
+            <h6 className="bg-primary py-1 rounded-br-sm rounded-bl-sm absolute top-0 left-24 right-24 text-zinc-950 text-center font-semibold">
               Recommended
             </h6>
             <div className="text-2xl font-light flex gap-2 items-center">
               <Logo showText={false} />
               <h3>Pro</h3>
+
+              {often === 'A' && 
+                (<small className="text-primary ml-2 py-1 px-5 bg-zinc-900 rounded-md uppercase font-medium text-sm">
+                  Save 34%
+                </small>)
+              }
             </div>
             <h4 className="text-5xl font-medium text-primary mt-2 flex pb-5 gap-2 items-center">
               <span>{plans['PRO'][often].value}</span>
@@ -121,7 +126,7 @@ export default function Pricing() {
           </div>
 
           <ul className="flex flex-col gap-2 text-zinc-300">
-            <small className="text-zinc-500 py-3">All Starter Resources Included +</small>
+            <small className="text-zinc-500 py-3">All Hobby Resources Included +</small>
             <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-primary" />
               Unlimited projects
             </li>
@@ -145,8 +150,13 @@ export default function Pricing() {
             <h3 className="text-2xl font-light flex gap-2 items-center">
               <RocketLaunchIcon width={25} />
               Enterprise
+              {often === 'A' && 
+                (<small className="text-primary ml-2 py-1 px-5 bg-zinc-900 rounded-md uppercase font-medium text-sm">
+                  Save 20%
+                </small>)
+              }              
             </h3>
-            <h4 className="text-5xl pb-5 font-medium text-amber-500 mt-2 flex gap-2 items-center">
+            <h4 className="text-5xl pb-5 font-medium mt-2 flex gap-2 items-center">
               <span>{plans['ENTERPRISE'][often].value}</span>
               <span className="flex flex-col gap-1">
                 <small className="text-sm text-zinc-500">per user</small>
@@ -155,26 +165,26 @@ export default function Pricing() {
             </h4>
 
             <div className="flex flex-col gap-2">
-              <Button className="bg-amber-500 text-white hover:bg-green-shadow">Get started</Button>
+              <Button>Get started</Button>
               <Button variant={'outline'}>Chat to sales</Button>
             </div>
           </div>
 
           <ul className="flex flex-col gap-2 text-zinc-300">
             <small className="text-zinc-500 py-3">All Pro Resources Included +</small>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-amber-500" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited projects
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-amber-500" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited users
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-amber-500" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited storage
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-amber-500" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited bandwidth
             </li>
-            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} className="text-amber-500" />
+            <li className="flex items-center gap-1"><CheckBadgeIcon width={25} />
               Unlimited API calls
             </li>
           </ul>

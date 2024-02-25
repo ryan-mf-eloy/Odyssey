@@ -2,7 +2,7 @@ import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer className="px-28 mt-20 min-h-72 flex flex-row items-center justify-center">
+    <footer className="px-28 min-h-72 flex flex-row items-center justify-center">
       <div className="flex w-full flex-col items-center justify-center flex-1">
         <Logo />
         <small className="text-zinc-600 pt-2">&#169; 2024</small>

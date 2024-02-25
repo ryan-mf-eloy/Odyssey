@@ -72,7 +72,7 @@ const config = {
         ocean: "hsl(var(--ocean))",
       },
       boxShadow: {
-        'vignette': 'inset 0 35px 10rem 10rem rgba(0, 0, 0, 0.4)',
+        'vignette': 'inset 0 0 20rem 20rem rgba(0, 0, 0, 0.65)',
       },
       borderRadius: {
         lg: "var(--radius)",
